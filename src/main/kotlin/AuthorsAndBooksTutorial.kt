@@ -47,7 +47,7 @@ data class Book private constructor(val title: String, val authors: NonEmptyList
                 {
                     val validatedAuthors = authors.withIndex().mapOrAccumulate {
                         Author(it.value)
-                            .mapLeft { _ -> EmptyAuthor(it.index) }
+                            .recover { _ -> raise(EmptyAuthor(it.index)) }
                             .bind()
                     }
                     ensureNotNull(validatedAuthors.toNonEmptyListOrNull()) { NoAuthors }
