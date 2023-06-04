@@ -6,8 +6,6 @@ import io.kotest.matchers.collections.shouldContainExactlyInAnyOrder
 class AuthorsAndBooksTutorialTest : FunSpec({
 
     context("using mapOrAccumulate(iter) with recover") {
-        val bookCreator = Book::invoke
-
         test("good case") {
             Book("The Universe And I", listOf("Foo", "Bar")).shouldBeRight()
         }
